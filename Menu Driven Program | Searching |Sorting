@@ -1,0 +1,252 @@
+#include<iostream>
+using namespace std;
+
+void Linear(int arr[] , int s , int num)
+{
+	bool flag = false;
+	for ( int i=0 ; i<s ; i++)
+	{
+		if( arr[i]==num)
+		{
+			flag=true;
+			break;
+		}
+	}
+	if(flag)
+	{
+		cout<<"NUMBER FOUND!"<<endl;
+	}
+	else
+	{
+		cout<<"NUMBER NOT FOUND!"<<endl;
+	}
+	
+}
+
+void Binary(int arr[] , int s , int num )
+{
+	for(int i=0; i<s-1; i++)
+	{
+		for(int j=0; j<s-1-i; j++)
+		{
+			if(arr[j]>arr[j+1])
+			{
+				int temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+			}
+		}
+	}
+	
+	bool flag=false;
+	int start=0;
+	int end=s-1;
+	while(start<=end)
+	{
+		int mid=(start+end)/2;
+		if(arr[mid]==num)
+		{
+			flag=true;
+			break;
+		}
+		if(arr[mid]<num)
+		{
+			start=mid+1;
+		}
+		 
+		if(arr[mid]>num)
+		{
+			end=mid-1;
+		}
+	
+	}
+		if(flag)
+
+	{
+		cout<<" NUMBER FOUND! "<<endl;
+	}
+	else
+	{
+		cout<<" NUMBER NOT FOUND!"<<endl; 
+	}
+
+}
+
+
+void Bubble( int arr[] , int s)
+{
+		for(int i=0; i<s-1; i++)
+	{
+		for(int j=0; j<s-1-i; j++)
+		{
+			if(arr[j]>arr[j+1])
+			{
+				int temp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=temp;
+			}
+		}
+	}
+	cout<<endl;
+	cout<<" The sorted array is as follow: "<<endl;
+	for(int i=0 ; i<s ; i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+	
+}
+
+void Selection(int arr[] , int s)
+{
+	
+	for(int i=0 ; i<s-1 ; i++)     
+	{
+		int min=i;
+		
+		for(int j=i+1 ; j<s ; j++)   
+		{
+			if(arr[min]>arr[j])
+			{
+				min=j;
+			}
+		}
+		
+		int temp= arr[min];
+		arr[min]=arr[i];
+		arr[i]= temp;
+		
+	}
+	
+	 cout<<"The sorted array is as follow: "<<endl;
+for( int i=0 ; i<s; i++)
+{
+	cout<<arr[i]<<" ";
+}
+}
+
+void Insertion(int arr[] , int s)
+{
+		for(int i=0; i<s; i++)
+	{
+		int temp=arr[i];
+		int j=i;
+		while(j>0 && arr[j-1]>=temp)
+		{
+			arr[j]=arr[j-1];
+			j--;
+		}
+		arr[j]=temp;
+	}
+    cout<<"The sorted array is as follow: "<<endl;
+	for(int i=0; i<s; i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}
+	
+
+	
+	
+int main()
+{
+		int size;
+	cout<<"Enter size of array: "<<endl;
+	cin>>size;
+	int a[size];
+	cout<<"Enter "<<size<<" values in array: "<<endl;
+	for(  int i =0 ; i < size ; i++)
+	{
+		cin >> a[i];
+	}
+	
+	
+	cout<<endl;
+    cout<<"********USER MENU********"<<endl;
+    cout<<endl;
+    cout<<"_____Press A for Searching_____"<<endl;
+    cout<<"_____Press B for Sorting_____"<<endl;
+    cout<<endl;
+    char choice;
+    cout<<"Enter your choice: "<<endl;
+    cin>>choice;
+    cout<<endl;
+    
+    switch(choice)
+    {
+    	case 'A' :
+    	case 'a':
+    		{
+    			int numtofind;
+    			cout<<endl;
+    			cout<<"Enter Number to find: "<<endl;
+    			cin>>numtofind;
+    			
+    			cout<<endl;
+    			cout<<"*****SEARCHING MENU*****"<<endl;
+    			cout<<"Press 1 for linear Search"<<endl;
+    			cout<<"Press 2 for Binary Search"<<endl;
+    			cout<<endl;
+    			int choiceA;
+    			cout<<"Enter your choice: "<<endl;
+    			cin>>choiceA;
+    			if(choiceA==1)
+    			{
+    				Linear(a,size,numtofind);
+				}
+				else if(choiceA==2)
+				{
+					Binary(a,size,numtofind);
+				}
+				else
+				{
+					cout<<"WRONG CHOICE!"<<endl;
+				}
+				
+			    break;
+			}
+			
+			case 'B':
+			case 'b':
+				{
+					cout<<"*****SORTING MENU*****"<<endl;
+					cout<<endl;
+					cout<<"Press 1 for Bubble Sort"<<endl;
+					cout<<"Press 2 for Selection Sort"<<endl;
+					cout<<"Press 3 for Insertion Sort"<<endl;
+					cout<<endl;
+					int choiceB;
+					cout<<"Enter your choice: "<<endl;
+					cin>>choiceB;
+					if(choiceB==1)
+					{
+						Bubble(a,size);
+					}
+					else if(choiceB==2)
+					{
+						Selection(a,size);
+					}
+					else if(choiceB==3)
+					{
+						Insertion(a, size);
+					}
+					else
+					{
+						cout<<"WRONG CHOICE"<<endl;
+					}
+					break;
+					
+				
+				
+				}
+				
+				
+
+	}
+}
+
+		
+
+
+
+
+
