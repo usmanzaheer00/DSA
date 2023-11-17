@@ -1,0 +1,264 @@
+#include<iostream>
+#include "DNode.h"
+using namespace std;
+
+class DLinkedlist
+{
+	private:
+		DNode* Head;
+		DNode *Tail;
+		
+	public:
+	    DLinkedlist()
+		{
+		  Head = 0;
+		  Tail = 0;	
+		}
+		
+		// 1. Is Empty:
+		bool Is_Empty()
+		{
+			if ( Head==0 && Tail==0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+	
+		// 2. Insert At Head :
+		void Insert_At_Head( double value)
+		{
+			DNode* newNode = new DNode (value);
+			
+			if (Is_Empty())
+			{
+				Head = Tail = newNode  ;
+			}
+			
+			else
+			{
+				newNode->next = Head;
+				Head->prev = newNode;
+				Head = newNode;
+			}
+		}
+		
+		// 3. Insert At Tail:
+		void Insert_At_Tail( double value)
+		{
+			DNode* newNode = new DNode (value);
+			
+			if (Is_Empty())
+			{
+				Head = Tail = newNode;
+			}
+		
+			else
+			{
+				newNode->prev= Tail;
+				Tail->next =newNode;
+				Tail = newNode; 
+				
+			}
+		}
+		
+		// 4. Insert After:
+		void Insert_After( double existing , double value )
+		{
+			if ( Is_Empty() )
+			{
+				cout<<" List is empty.  "<<endl;
+			}
+			
+			else if ( Tail->data = existing)
+			{
+				Insert_At_Tail(value);
+			}
+			
+			else
+			{
+				DNode* current = Head;
+				while(current!=0 && current->data!=existing)
+				{
+					current = current->next;
+				}
+				
+				if ( current == 0)
+				{
+					cout<< " Value is not existing in the list. "<<endl;
+				}
+				
+				else
+				{
+					DNode* newNode = new DNode (value);
+					newNode->next = current->next;
+					newNode->prev = current;
+					current->next->prev = newNode;
+					current->next = newNode;
+				}
+			}
+			
+		}	
+		
+		//5. Insert_Before:
+		void Insert_Before(double existing , double value)
+		{
+		
+		if ( Is_Empty() )
+			{
+				cout<<" List is empty.  "<<endl;
+			}
+			
+			else if ( Head->data = existing)
+			{
+				Insert_At_Head(value);
+			}
+			
+			else
+			{
+				DNode* current = Head;
+				while(current!=0 && current->data!=existing)
+				{
+					current = current->next;
+				}
+				
+				if ( current == 0)
+				{
+					cout<< " Value is not existing in the list. "<<endl;
+				}
+				
+				else
+				{
+					DNode* newNode = new DNode (value);
+					newNode->next = current;
+					newNode->prev = current->prev;
+					current->prev->next = newNode;
+					current->prev = newNode;
+				}
+	     	}
+	    }
+	    
+	    // 6. Delete From Head:
+	    void Delete_From_Head()
+	    {
+	    	if( Is_Empty() )
+	    	{
+	    		cout<<" List is empty. "<<endl;
+			}
+			
+			else
+			{
+				DNode* delNode = Head;
+				Head->next->prev = 0;
+				Head = Head->next;
+				delNode->next = 0;
+				delete delNode;
+			}
+		}
+		
+		// 7. Delete From Tail:
+		  void Delete_From_Tail()
+	    {
+	    	if( Is_Empty() )
+	    	{
+	    		cout<<" List is empty. "<<endl;
+			}
+			
+			else
+			{
+				DNode* delNode = Tail;
+				Tail->prev->next = 0;
+				Tail = Tail->prev;
+				delNode->prev = 0;
+				delete delNode;
+			}
+		}
+		
+		// 8. Delete Spacific:
+		void Delete_Spacific(double existing)
+		{
+			if ( Is_Empty() )
+			{
+				cout<<" List is empty. "<<endl;
+			}
+			
+			else if ( Head->data==existing)
+			{
+				Delete_From_Head();
+			}
+			
+			else if ( Tail->data==existing)
+			{
+				Delete_From_Tail();
+			}
+			
+			else
+			{
+				DNode* current = Head->next;
+				while(current!=0 && current->data!=existing)
+				{
+					current = current->next;
+				}
+				if (current == 0)
+				{
+					cout<< " Value is not existing in the list. "<<endl;
+				}
+				
+				else
+				{
+					current->prev->next = current->next;
+					current->next->prev = current->prev;
+					current->next = 0;
+					current->prev = 0;
+					delete current;
+				}
+			}
+		}
+		
+		// 9. Forward Traverse:
+		void Forward_Traverse()
+		{
+			if (Is_Empty())
+			{
+				cout<<" List is empty. "<<endl;
+			}
+			
+			else
+			{
+				cout<<" Values in the list are: "<<endl;
+				DNode* current = Head;
+				while(current!=0)
+				{
+					cout<<current->data<<endl;
+					current=current->next;
+				}
+			}
+		} 
+		
+		//10. Reverse Traverse:
+			void Reverse_Traverse()
+		{
+			if (Is_Empty())
+			{
+				cout<<" List is empty. "<<endl;
+			}
+			
+			else
+			{
+				cout<<" Values in the list are: "<<endl;
+				DNode* current = Tail;
+				while(current!=0)
+				{
+					cout<<current->data<<endl;
+					current=current->prev;
+				}
+			}
+		} 
+		
+		
+		
+};
