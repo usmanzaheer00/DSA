@@ -1,0 +1,118 @@
+#include<iostream>
+#include"DLinkedlist.h"
+using namespace std;
+
+int main()
+{
+	DLinkedlist list;
+	int choice;
+
+    
+    do
+    
+    {
+    cout<<"                           "<<endl;
+	cout<<" ********USER MENU******** "<<endl;
+	cout<<"                           "<<endl;
+	cout<<"      1. Insert at Head    "<<endl;
+    cout<<"      2. Insert at Tail    "<<endl;
+    cout<<"      3. Insert After      "<<endl;
+    cout<<"      4. Insert Before     "<<endl;
+    cout<<"      5. Delete from Head  "<<endl;
+    cout<<"      6. Delete from Tail  "<<endl;
+    cout<<"      7. Delete Node       "<<endl;
+    cout<<"      8. Forward Traverse  "<<endl;
+    cout<<"      9. Reverse Traverse  "<<endl;
+    cout<<"     10. Exit Program      "<<endl;
+    cout<<"                           "<<endl;
+    cout<<"    -> Enter Your Choice.  "<<endl;
+    cin>>choice;
+	
+	
+    switch( choice )
+    {
+    	case 1:
+    	{
+    		double H_value;
+    		cout<<" Enter the value you want to insert at Head. "<<endl;
+    		cin>>H_value;
+    		list.Insert_At_Head(H_value);
+    		break;
+		}
+		case 2:
+		{
+			double T_value;
+			cout<<" Enter the value you want to insert at Tail. "<<endl;
+			cin>>T_value;
+			list.Insert_At_Tail(T_value);
+			break;
+		}
+		
+		case 3:
+		{
+			double value1;
+			double value2;
+			cout<<" Enter existing value in the list. "<<endl;
+			cin>>value1;
+			cout<<" Enter the value you want to insert after "<<value1<<endl;
+			cin>>value2;
+			list.Insert_After(value1,value2);
+			break;
+		}
+		
+		case 4:
+		{
+			double num1;
+			double num2;
+			cout<<" Enter existing value in the list. "<<endl;
+			cin>>num1;
+			cout<<" Enter the value you want to insert before "<<num1<<endl;
+			cin>>num2;
+			list.Insert_Before(num1,num2);
+			break;
+		}
+		
+		case 5:
+		{
+			list.Delete_From_Head();
+			cout<<" Current head is deleted. "<<endl;
+			break;
+		}
+		
+		case 6:
+		{
+			list.Delete_From_Tail();
+			cout<<" Current tail is deleted. "<<endl;
+			break;
+		}
+		
+		case 7:
+			{
+				double del_value;
+				cout<<" Enter the node you want to delete. "<<endl;
+				cin>>del_value;
+				list.Delete_Spacific(del_value);
+				break;
+			}
+		
+		case 8:
+			{
+				list.Forward_Traverse();
+				break;
+			}
+			
+		case 9:
+			{
+				list.Reverse_Traverse();
+				break;
+			}
+		case 10:
+		{
+			cout<<" ********THANK YOU******** "<<endl;
+		}	
+	}
+	
+  }
+ while(choice!=10);  
+
+}
