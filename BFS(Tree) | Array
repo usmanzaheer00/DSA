@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+
+	char tree[15];
+	void Set_Root(char value)
+	{
+		if (tree[0] == '\0')
+		{
+			tree[0] = value;
+		}
+		else
+		{
+			cout<<" Root Already Exist. "<<endl;
+		}
+	}
+	
+	int Search_Node(char value)
+	{
+		int index = -1;
+		for(int i=0 ; i<15 ; i++)
+		{
+			if(tree[i] == value)
+			{
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+	
+	void Set_Left_Child(char parent , char value)
+	{
+		int index = Search_Node(parent);
+		if(index == -1)
+		{
+			cout<<" Parent is not in the tree. "<<endl;
+		}
+		else
+		{
+			tree[(2*index)+1] = value;
+		}
+	}
+	
+	void Set_Right_Child(char parent , char value)
+	{
+		int index = Search_Node(parent);
+		if(index == -1)
+		{
+			cout<<" Parent is not in the tree. "<<endl;
+		}
+		else
+		{
+			tree[(2*index)+2] = value;
+		}
+	}
+	
+	void Print_Tree()
+	{
+		cout<<" Values in the tree are: "<<endl;
+		for(int i=0 ; i<15 ; i++)
+		{
+			if(tree[i]!= '\0')
+			{
+				cout<<tree[i]<<" ";
+			}
+			else
+			{
+				cout<<" - ";
+			}
+		}
+	}
+	
+int main()
+{
+	Set_Root('M');
+	Set_Left_Child('M' ,'O');
+	Set_Right_Child('O' , 'S');
+	Print_Tree();
+	
+	
+}
